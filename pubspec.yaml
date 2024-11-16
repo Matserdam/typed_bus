@@ -1,8 +1,10 @@
 name: typed_bus
-version: 0.0.1
+version: 0.0.2
 description: Typed Event Bus to share events on a bus and be sure of payload
 repository: "https://github.com/Matzu89/typed_bus"
 homepage: "https://github.com/Matzu89/typed_bus"
 
 environment:
   sdk: ^3.5.4
+dev_dependencies:
+  lints: ^5.0.0

@@ -25,7 +25,7 @@ class TypedBus {
 
   // Publish an event with strict type checking
   void publish<T>(String event, T data) {
-    TBE.validateEvent<T>(event);
+    tBE.validateEvent<T>(event);
     final controller = _getController(event);
     controller.add(data);
   }
@@ -37,13 +37,13 @@ class TypedBus {
 
   // Subscribe to an event
   Stream<T> subscribe<T>(String event) {
-    TBE.validateEvent<T>(event);
+    tBE.validateEvent<T>(event);
     return _getController(event).stream.cast<T>();
   }
 
   // Subscribe without type casting (raw stream)
   Stream<dynamic> subscribeRaw(String event) {
-    TBE.validateEvent<dynamic>(event);
+    tBE.validateEvent<dynamic>(event);
     return _getController(event).stream;
   }
 

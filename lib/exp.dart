@@ -13,16 +13,16 @@ class TodoItem {
 }
 
 void main() {
-  TBE.registerEvent<TodoItem>("toggle");
+  tBE.registerEvent<TodoItem>("toggle");
 
-  TB.subscribe<TodoItem>('toggle').listen((TodoItem item) {
+  tB.subscribe<TodoItem>('toggle').listen((TodoItem item) {
     // do something with the item
     item.isDone = true;
 
     print(item);
   });
 
-  TB.publish<TodoItem>(
+  tB.publish<TodoItem>(
       'toggle', TodoItem(description: "Publish Toggle Event", isDone: false));
 
   // Typed publishing

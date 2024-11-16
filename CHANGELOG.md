@@ -1,4 +1,10 @@
 # Changelog
 
-## 0.0.1 - November 16, 2024 
+## 0.0.2
+    - Follow dart analysis core guidelines
+    - Renamed TB to tB
+    - Renamed TBE to tBE
+    - Updated README.md to reflect the changes
+
+## 0.0.1
     - Initial release 0.0.1

@@ -1,7 +1,7 @@
 
-# **TypedBus (TB) and TypedBusEvents (TBE)**
+# **TypedBus (tB)
 
-TypedBus (`TB`) and TypedBusEvents (`TBE`) provide a powerful, type-safe event bus for Dart applications. With TypedBus, you can publish and subscribe to strongly-typed events, ensuring safe communication between different parts of your application.
+TypedBus (`tB`) and TypedBusEvents (`tBE`) provide a powerful, type-safe event bus for Dart applications. With TypedBus, you can publish and subscribe to strongly-typed events, ensuring safe communication between different parts of your application.
 
 This library offers compile-time and runtime safety, allowing developers to write clean and predictable event-driven code.
 
@@ -38,28 +38,28 @@ flutter pub get
 
 ### **1. Register Events**
 
-Before publishing or subscribing, register events and their expected payload types using `TBE.registerEvent`:
+Before publishing or subscribing, register events and their expected payload types using `tBE.registerEvent`:
 
 ```dart
-TBE.registerEvent<String>('event1');
+tBE.registerEvent<String>('event1');
 ```
 
 ### **2. Subscribe to Events**
 
-Use `TB.subscribe` to listen for specific events. Subscribers receive only the payloads of the registered type:
+Use `tB.subscribe` to listen for specific events. Subscribers receive only the payloads of the registered type:
 
 ```dart
-TB.subscribe<String>('event1').listen((String data) {
+tB.subscribe<String>('event1').listen((String data) {
   print('Received Event 1: $data');
 });
 ```
 
 ### **3. Publish Events**
 
-Use `TB.publish<T>` to send events globally with their corresponding payloads:
+Use `tB.publish<T>` to send events globally with their corresponding payloads:
 
 ```dart
-TB.publish<String>('event1', "Hello world!"); 
+tB.publish<String>('event1', "Hello world!"); 
 ```
 
 ### **4. Error Handling**
@@ -68,7 +68,7 @@ If you attempt to publish or subscribe with mismatched types, the library will t
 
 #### **Example of a Mismatched Type**
 ```dart
-TB.publish<String>('action3', SomethingCrazy(
+tB.publish<String>('action3', SomethingCrazy(
   options: {},
   option1: true,
   option2: false,
@@ -86,13 +86,13 @@ TB.publish<String>('action3', SomethingCrazy(
 
 #### **Register an Event**
 ```dart
-TBE.registerEvent<T>(String event);
+tBE.registerEvent<T>(String event);
 ```
 - Registers a new event with the specified payload type `<T>`.
 
 #### **Example**
 ```dart
-TBE.registerEvent<String>('my_event');
+tBE.registerEvent<String>('my_event');
 ```
 
 ---
@@ -101,13 +101,13 @@ TBE.registerEvent<String>('my_event');
 
 #### **Subscribe to an Event**
 ```dart
-Stream<T> TB.subscribe<T>(String event);
+Stream<T> tB.subscribe<T>(String event);
 ```
 - Subscribes to an event and listens for payloads of type `<T>`.
 
 #### **Publish an Event**
 ```dart
-void TB.publish<T>(String event, T data);
+void tB.publish<T>(String event, T data);
 ```
 - Publishes an event globally with the given payload.
 
@@ -121,14 +121,14 @@ import 'package:typed_bus/typed_bus.dart';
 
 void main() {
   // Register events
-  TBE.registerEvent<String>('eventName');
+  tBE.registerEvent<String>('eventName');
 
   // Subscribe to events
-  TB.subscribe<String>('eventName').listen((data) {
+  tB.subscribe<String>('eventName').listen((data) {
     print('Received eventName: $data');
   });
 
-  TB.publish<String>('eventName', 'Hello world!');  
+  tB.publish<String>('eventName', 'Hello world!');  
 }
 ```
 
@@ -158,14 +158,14 @@ class TodoItem {
 #### Use your custom type
 ```dart
 
-TBE.registerEvent<TodoItem>("toggle");
+tBE.registerEvent<TodoItem>("toggle");
 
-TB.subscribe<TodoItem>('toggle').listen((TodoItem item) {
+tB.subscribe<TodoItem>('toggle').listen((TodoItem item) {
   // do something with the item
   toggleItem(item);
 });
 
-TB.publish<TodoItem>(
+tB.publish<TodoItem>(
     'toggle', TodoItem(description: "Publish Toggle Event", isDone: false));
 ```
 
@@ -175,14 +175,14 @@ TB.publish<TodoItem>(
 For events where the payload type isn’t fixed, you can use `dynamic`:
 
 ```dart
-TBE.registerEvent<dynamic>('dynamic_event');
+tBE.registerEvent<dynamic>('dynamic_event');
 
-TB.subscribe<dynamic>('dynamic_event').listen((data) {
+tB.subscribe<dynamic>('dynamic_event').listen((data) {
   print('Dynamic event received: $data');
 });
 
-TB.publish<dynamic>('dynamic_event', {'key': 'value'});
-TB.publish<dynamic>('dynamic_event', 12345);
+tB.publish<dynamic>('dynamic_event', {'key': 'value'});
+tB.publish<dynamic>('dynamic_event', 12345);
 ```
 
 ---
