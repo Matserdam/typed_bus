@@ -41,10 +41,7 @@ flutter pub get
 Before publishing or subscribing, register events and their expected payload types using `TBE.registerEvent`:
 
 ```dart
-TBE.registerEvent<dynamic>('action1');
-TBE.registerEvent<String>('action2');
-TBE.registerEvent<Map<String, int>>('action3');
-TBE.registerEvent<SomethingCrazy>('action4');
+TBE.registerEvent<String>('event1');
 ```
 
 ### **2. Subscribe to Events**
@@ -52,41 +49,17 @@ TBE.registerEvent<SomethingCrazy>('action4');
 Use `TB.subscribe` to listen for specific events. Subscribers receive only the payloads of the registered type:
 
 ```dart
-TB.subscribe<dynamic>('action1').listen((data) {
-  print('Received Action 1: $data');
-});
-
-TB.subscribe<String>('action2').listen((data) {
-  print('Received Action 2: $data');
-});
-
-TB.subscribe<Map<String, int>>('action3').listen((data) {
-  print('Received Action 3: $data');
-});
-
-TB.subscribe<SomethingCrazy>('action4').listen((data) {
-  print('Received Action 4: $data');
+TB.subscribe<String>('event1').listen((String data) {
+  print('Received Event 1: $data');
 });
 ```
 
 ### **3. Publish Events**
 
-Use `TB.publish` to send events globally with their corresponding payloads:
+Use `TB.publish<T>` to send events globally with their corresponding payloads:
 
 ```dart
-TB.publish<dynamic>('action1', {"hello": 1, "world": 2});
-TB.publish<String>('action2', "Hello world!");
-TB.publish<Map<String, int>>('action3', {"hello": 1, "world": 2});
-TB.publish<SomethingCrazy>(
-  'action4',
-  SomethingCrazy(
-    options: {},
-    option1: true,
-    option2: false,
-    option3: true,
-    option4: false,
-  ),
-);
+TB.publish<String>('event1', "Hello world!"); 
 ```
 
 ### **4. Error Handling**
@@ -95,7 +68,7 @@ If you attempt to publish or subscribe with mismatched types, the library will t
 
 #### **Example of a Mismatched Type**
 ```dart
-TB.publish<Map<String, int>>('action3', SomethingCrazy(
+TB.publish<String>('action3', SomethingCrazy(
   options: {},
   option1: true,
   option2: false,
@@ -213,6 +186,35 @@ TB.publish<dynamic>('dynamic_event', 12345);
 ```
 
 ---
+
+## Licensing
+
+This project is available under two licenses:
+
+### **1. MIT License (Open Source)**
+The open-source version of this project is licensed under the permissive MIT License. You are free to:
+- Use the code for personal or commercial purposes.
+- Modify, distribute, and integrate it into your projects.
+
+However, this version comes **as is** with no support, warranties, or guarantees.
+
+View the full MIT License [here](LICENSE).
+
+---
+
+### **2. Commercial License**
+For organizations and enterprises requiring additional rights or support, a Commercial License is available. It includes:
+- Priority support and feature requests.
+- Indemnification and compliance with corporate legal policies.
+- Permission to use the software without attribution (if applicable).
+
+To purchase a Commercial License or learn more, please contact us at mats@matsdeswart.nl.
+
+---
+
+### **Which License Should You Choose?**
+- If you’re an individual or small team using the software in an open-source or non-critical project, the **MIT License** is sufficient.
+- If you need priority support, legal assurances, or customized terms, opt for the **Commercial License**.
 
 ## **Conclusion**
 
