@@ -29,7 +29,7 @@ class TypedBusEvents {
     if (expectedType == null) {
       throw ArgumentError('Event "$event" is not registered.');
     }
-    if (expectedType != T) {
+    if (expectedType != dynamic && expectedType != T) {
       throw ArgumentError(
           'Type mismatch for event "$event": Expected $expectedType, got $T.');
     }

@@ -30,19 +30,7 @@ class TypedBus {
     controller.add(data);
   }
 
-  void emit(String event, dynamic data) {
-    final expectedType = TBE.getEventType(event);
-
-    if (expectedType == null) {
-      throw ArgumentError('Event "$event" is not registered.');
-    }
-
-    if (data.runtimeType != expectedType) {
-      throw ArgumentError(
-          'Type mismatch for event "$event": Expected $expectedType, got ${data.runtimeType}.');
-    }
-
-    // not using publish because of T requirement
+  void wildFire(String event, dynamic data) {
     final controller = _getController(event);
     controller.add(data);
   }

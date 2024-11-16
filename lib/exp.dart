@@ -1,30 +1,29 @@
 import 'package:typed_bus/typed_bus.dart';
 
-class Action1Payload {
-  final String actionName;
-  final int count;
+class TodoItem {
+  String description;
+  bool isDone;
 
-  Action1Payload(this.actionName, this.count);
-}
+  TodoItem({required this.description, required this.isDone});
 
-class Action2Payload {
-  final String message;
-
-  Action2Payload(this.message);
+  @override
+  String toString() {
+    return 'TodoItem(description: $description, isDone: $isDone)';
+  }
 }
 
 void main() {
-  TBE.registerEvent<Action1Payload>('action1');
-  TBE.registerEvent<Action2Payload>('action2');
+  TBE.registerEvent<TodoItem>("toggle");
 
-  TB.subscribe<Action1Payload>('action1').listen((data) {
-    print('Received Action1: ${data.actionName}, count: ${data.count}');
+  TB.subscribe<TodoItem>('toggle').listen((TodoItem item) {
+    // do something with the item
+    item.isDone = true;
+
+    print(item);
   });
 
-  TB.subscribe<Action2Payload>('action2').listen((data) {
-    print('Received Action1: ${data.message}');
-  });
+  TB.publish<TodoItem>(
+      'toggle', TodoItem(description: "Publish Toggle Event", isDone: false));
 
-  TB.emit("action1", Action1Payload("TestAction", 1));
-  TB.publish<Action1Payload>("action1", Action1Payload("test", 2));
+  // Typed publishing
 }
