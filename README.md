@@ -191,14 +191,15 @@ tB.publish<dynamic>('dynamic_event', 12345);
 
 This project is available under two licenses:
 
-### **1. MIT License (Open Source)**
-The open-source version of this project is licensed under the permissive MIT License. You are free to:
+### **1. BSD-3-Clause License (Open Source)**
+
+The open-source version of this project is licensed under the permissive BSD-3-Clause License. You are free to:
 - Use the code for personal or commercial purposes.
 - Modify, distribute, and integrate it into your projects.
 
-However, this version comes **as is** with no support, warranties, or guarantees.
+However, this version comes **as is** with no support, warranties, or guarantees. Additionally, the names of the contributors may not be used to endorse or promote derived products without specific prior written permission.
 
-View the full MIT License [here](LICENSE).
+View the full BSD-3-Clause License [here](LICENSE).
 
 ---
 
