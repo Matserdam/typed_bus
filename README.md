@@ -214,7 +214,7 @@ To purchase a Commercial License or learn more, please contact us at mats@matsde
 ---
 
 ### **Which License Should You Choose?**
-- If you’re an individual or small team using the software in an open-source or non-critical project, the **MIT License** is sufficient.
+- If you’re an individual or small team using the software in an open-source or non-critical project, the **BSD-3-Clause License** is sufficient.
 - If you need priority support, legal assurances, or customized terms, opt for the **Commercial License**.
 
 ## **Conclusion**

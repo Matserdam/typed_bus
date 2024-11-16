@@ -1,5 +1,8 @@
 # Changelog
 
+## 0.0.5
+    - Update license information in README
+
 ## 0.0.4
     - Update license information
 
