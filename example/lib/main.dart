@@ -16,7 +16,6 @@ void main() {
   tBE.registerEvent<TodoItem>("toggle");
 
   tB.subscribe<TodoItem>('toggle').listen((TodoItem item) {
-    // do something with the item
     item.isDone = true;
 
     print(item);
@@ -24,6 +23,4 @@ void main() {
 
   tB.publish<TodoItem>(
       'toggle', TodoItem(description: "Publish Toggle Event", isDone: false));
-
-  // Typed publishing
 }
