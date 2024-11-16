@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.0.6
+    - Add a working example
+    - Providing good documentation for libraries, classes, functions, and other API elements improving code readability
+
 ## 0.0.5
     - Update license information in README
 
