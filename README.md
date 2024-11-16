@@ -9,11 +9,11 @@ This library offers compile-time and runtime safety, allowing developers to writ
 
 ## **Features**
 
-- **Type-Safe Event Handling**: Events are tied to specific data types, ensuring only valid payloads are passed.
-- **Dynamic Event Registration**: Register new events and their types dynamically using `TBE`.
-- **Subscription Management**: Subscribe to events and listen to typed data.
-- **Publish Events**: Publish strongly-typed events globally.
-- **Error Handling**: Protects against mismatched event types during publishing and subscribing.
+- 🎯 **Type-Safe Event Handling**: Events are tied to specific data types, ensuring only valid payloads are passed.
+- ⚡ **Dynamic Event Registration**: Register new events and their types dynamically using `TBE`.
+- 🔔 **Subscription Management**: Subscribe to events and listen to typed data.
+- 📤 **Publish Events**: Publish strongly-typed events globally.
+- 🛡️ **Error Handling**: Protects against mismatched event types during publishing and subscribing.
 
 ---
 
