@@ -1,5 +1,8 @@
 # Changelog
 
+## 0.0.3
+    - Update typo in README
+
 ## 0.0.2
     - Follow dart analysis core guidelines
     - Renamed TB to tB
