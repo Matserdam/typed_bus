@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.0.8
+    - Add TypedBus image to README
+    - Update README install example to ^0.0.8
+    - Bump version to 0.0.8
+
 ## 0.0.7
     - Migrate license to MIT
     - Update README to reflect MIT-only licensing

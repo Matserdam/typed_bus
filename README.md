@@ -1,7 +1,9 @@
 
 # **TypedBus (tB)**
 
-TypedBus (`tB`) and TypedBusEvents (`tBE`) provide a powerful, type-safe event bus for Dart applications. With TypedBus, you can publish and subscribe to strongly-typed events, ensuring safe communication between different parts of your application.
+![TypedBus](typedbus.png)
+
+TypedBus (`tB`) and TypedBusEvents (`tBE`) provide a powerful, type-safe event bus for Dart applications. With TypedBus, you can publish and subscribe to strongly-typed events, ensuring safe communication between system components.
 
 This library offers compile-time and runtime safety, allowing developers to write clean and predictable event-driven code.
 
@@ -23,7 +25,7 @@ Add the package to your `pubspec.yaml`:
 
 ```yaml
 dependencies:
-  typed_bus: ^0.0.7
+  typed_bus: ^0.0.8
 ```
 
 Then fetch the package:
