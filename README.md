@@ -23,7 +23,7 @@ Add the package to your `pubspec.yaml`:
 
 ```yaml
 dependencies:
-  typed_bus: ^1.0.0
+  typed_bus: ^0.0.7
 ```
 
 Then fetch the package:

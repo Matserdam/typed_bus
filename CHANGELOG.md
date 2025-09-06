@@ -3,8 +3,10 @@
 ## 0.0.7
     - Migrate license to MIT
     - Update README to reflect MIT-only licensing
+    - Update README install example to ^0.0.7
     - Update repository/homepage to new GitHub org `Matserdam`
     - Bump version to 0.0.7
+    - Add unit tests for TypedBus and TypedBusEvents
 
 ## 0.0.6
     - Add a working example
