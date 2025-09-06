@@ -187,35 +187,9 @@ tB.publish<dynamic>('dynamic_event', 12345);
 
 ---
 
-## Licensing
+## **License**
 
-This project is available under two licenses:
-
-### **1. BSD-3-Clause License (Open Source)**
-
-The open-source version of this project is licensed under the permissive BSD-3-Clause License. You are free to:
-- Use the code for personal or commercial purposes.
-- Modify, distribute, and integrate it into your projects.
-
-However, this version comes **as is** with no support, warranties, or guarantees. Additionally, the names of the contributors may not be used to endorse or promote derived products without specific prior written permission.
-
-View the full BSD-3-Clause License [here](LICENSE).
-
----
-
-### **2. Commercial License**
-For organizations and enterprises requiring additional rights or support, a Commercial License is available. It includes:
-- Priority support and feature requests.
-- Indemnification and compliance with corporate legal policies.
-- Permission to use the software without attribution (if applicable).
-
-To purchase a Commercial License or learn more, please contact us at mats@matsdeswart.nl.
-
----
-
-### **Which License Should You Choose?**
-- If you’re an individual or small team using the software in an open-source or non-critical project, the **BSD-3-Clause License** is sufficient.
-- If you need priority support, legal assurances, or customized terms, opt for the **Commercial License**.
+This project is licensed under the [MIT License](LICENSE).
 
 ## **Conclusion**
 

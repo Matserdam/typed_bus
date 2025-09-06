@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.0.7
+    - Migrate license to MIT
+    - Update README to reflect MIT-only licensing
+    - Update repository/homepage to new GitHub org `Matserdam`
+    - Bump version to 0.0.7
+
 ## 0.0.6
     - Add a working example
     - Providing good documentation for libraries, classes, functions, and other API elements improving code readability
