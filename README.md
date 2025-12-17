@@ -25,7 +25,7 @@ Add the package to your `pubspec.yaml`:
 
 ```yaml
 dependencies:
-  typed_bus: ^0.0.8
+  typed_bus: ^1.0.0
 ```
 
 Then fetch the package:

@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.0.0
+    - Add llms.txt - Agent Documentation
+    - Update README to refer to Agent Documentation
+    - Documentation added to context7
+
 ## 0.0.8
     - Add TypedBus image to README
     - Update README install example to ^0.0.8
