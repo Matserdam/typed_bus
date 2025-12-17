@@ -1,0 +1,176 @@
+typed_bus — TypedBus (tB) & TypedBusEvents (tBE)
+================================================
+
+What this package is
+--------------------
+`typed_bus` is a small, type-safe event bus for Dart. It lets you publish events with a payload type and subscribe to them as typed streams.
+
+There are two singletons (also exposed as globals):
+- TypedBus: publish + subscribe streams per event name
+- TypedBusEvents: registry of (event name -> payload Type) and runtime validation
+
+The main idea:
+1) Register an event name with a payload type (once at startup)
+2) Subscribe to that event as Stream<T>
+3) Publish that event with data of type T
+
+
+Install
+-------
+Add to `pubspec.yaml`:
+
+dependencies:
+  typed_bus: ^0.0.8
+
+Then:
+- `dart pub get`
+- or `flutter pub get`
+
+
+Import & globals
+----------------
+Import the package:
+
+import 'package:typed_bus/typed_bus.dart';
+
+This import provides two global singletons:
+- `tB`  : TypedBus()
+- `tBE` : TypedBusEvents()
+
+You can also instantiate the classes directly, but they are implemented as singletons, so `TypedBus()` and `TypedBusEvents()` always return the same instances within a process.
+
+
+Quickstart
+----------
+Register events (once):
+
+tBE.registerEvent<String>('event1');
+
+Subscribe:
+
+final sub = tB.subscribe<String>('event1').listen((data) {
+  print('Got: $data');
+});
+
+Publish:
+
+tB.publish<String>('event1', 'Hello world!');
+
+Cancel subscription when done:
+
+await sub.cancel();
+
+
+API (what to call)
+------------------
+
+TypedBusEvents (tBE)
+--------------------
+- registerEvent<T>(String event)
+  Registers the event name with payload type T.
+  Throws ArgumentError if the event name is already registered.
+
+- getEventType(String event) -> Type?
+  Returns the registered Type for an event, or null if not registered.
+
+- validateEvent<T>(String event)
+  Ensures the event exists in the registry and that its payload type matches T.
+  Throws ArgumentError if:
+  - the event is not registered
+  - the registered type is not `dynamic` and does not match T
+
+Important behavior:
+- If an event is registered as `dynamic`, validation allows any T.
+
+
+TypedBus (tB)
+-------------
+- Stream<T> subscribe<T>(String event)
+  Validates the event type via tBE.validateEvent<T>(event) and returns a typed Stream<T>.
+  Throws ArgumentError if the event is unregistered or the type mismatches.
+
+- void publish<T>(String event, T data)
+  Validates the event type via tBE.validateEvent<T>(event) and pushes data onto the event stream.
+  Throws ArgumentError if the event is unregistered or the type mismatches.
+
+- Stream<dynamic> subscribeRaw(String event)
+  Validates the event as dynamic (tBE.validateEvent<dynamic>(event)) and returns a raw dynamic stream.
+  Use this when you explicitly want to avoid casting.
+
+- void wildFire(String event, dynamic data)
+  Publishes without validation. Use only when you intentionally want “unsafe” publishing.
+
+- void dispose()
+  Closes all internal StreamControllers in the bus and clears the internal controller map.
+  Note: this does NOT clear the TypedBusEvents registry (there is no public "clear registry" API).
+
+
+Common patterns
+---------------
+
+Pattern: register all events in one place
+----------------------------------------
+Do event registration at app startup (e.g. in main(), or in an init module), to avoid duplicate registrations.
+
+void registerAppEvents() {
+  tBE.registerEvent<String>('auth:signed_in');
+  tBE.registerEvent<int>('cart:count_changed');
+}
+
+
+Pattern: custom payload types
+-----------------------------
+
+class TodoItem {
+  final String description;
+  final bool isDone;
+  TodoItem({required this.description, required this.isDone});
+}
+
+tBE.registerEvent<TodoItem>('todo:toggle');
+
+tB.subscribe<TodoItem>('todo:toggle').listen((item) {
+  // handle TodoItem
+});
+
+tB.publish<TodoItem>('todo:toggle', TodoItem(description: 'Buy milk', isDone: false));
+
+
+Pattern: dynamic payloads (intentionally loose)
+----------------------------------------------
+
+tBE.registerEvent<dynamic>('analytics:event');
+
+tB.subscribe<dynamic>('analytics:event').listen((data) {
+  // data can be Map, String, int, ...
+});
+
+tB.publish<dynamic>('analytics:event', {'name': 'clicked', 'id': 123});
+tB.publish<dynamic>('analytics:event', 'free-form payload');
+
+
+Gotchas / troubleshooting
+-------------------------
+
+- Event must be registered first
+  If you call subscribe/publish before registering an event, you get:
+  ArgumentError: Event "<name>" is not registered.
+
+- Type must match exactly (unless registered as dynamic)
+  If you register `String` but publish `int`, you get:
+  ArgumentError: Type mismatch for event "<name>": Expected String, got int.
+
+- Avoid registering the same event twice
+  registerEvent<T> throws if the event name is already registered. In Flutter hot reload scenarios, prefer registration in a place that runs once, or guard your registration in your own code.
+
+- Streams are broadcast
+  Under the hood, the bus uses broadcast StreamControllers, so multiple listeners can subscribe to the same event.
+
+
+Where to look in the source
+---------------------------
+- Globals `tB` and `tBE`: `lib/typed_bus.dart`
+- TypedBus implementation: `lib/typed_bus/typed_bus.dart`
+- TypedBusEvents registry: `lib/typed_bus/typed_bus_events.dart`
+
+

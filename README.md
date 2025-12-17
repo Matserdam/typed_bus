@@ -193,6 +193,12 @@ tB.publish<dynamic>('dynamic_event', 12345);
 
 This project is licensed under the [MIT License](LICENSE).
 
+---
+
+## **LLM / Agent documentation**
+
+If you're using an LLM coding agent, see `llms.txt` in the repository root for a concise, tool-friendly guide to installing and using this library. The agent documentation is also available via context7.
+
 ## **Conclusion**
 
 TypedBus and TypedBusEvents provide a robust way to handle event-driven communication in Dart applications. The library’s focus on type safety ensures your events are predictable and easy to debug.
